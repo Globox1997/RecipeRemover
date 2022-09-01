@@ -3,13 +3,14 @@
   "id": "reciperemover",
   "version": "${version}",
   "name": "Recipe Remover",
-  "description": "Remove recipes",
+  "description": "Remove recipes with a config",
   "authors": [
     "Globox_Z"
   ],
   "contact": {
-    "homepage": "?",
-    "sources": "?"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/reciperemover",
+    "sources": "https://github.com/Globox1997/RecipeRemover",
+    "issues": "https://github.com/Globox1997/RecipeRemover/issues"
   },
   "license": "MIT",
   "icon": "assets/reciperemover/icon.png",
@@ -38,7 +39,8 @@
     "fabricloader": ">=0.14.9",
     "fabric-api": "*",
     "minecraft": "~1.19",
-    "java": ">=17"
+    "java": ">=17",
+    "cloth-config2": ">=7.0.69"
   },
   "suggests": {
     "another-mod": "*"
