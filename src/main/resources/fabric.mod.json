@@ -28,7 +28,7 @@
     "emi": [
       "net.reciperemover.compat.RecipeRemoverEmiPlugin"
     ],
-    "rei": [
+    "rei_client": [
       "net.reciperemover.compat.RecipeRemoverReiPlugin"
     ]
   },
