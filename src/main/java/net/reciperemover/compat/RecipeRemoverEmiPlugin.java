@@ -3,12 +3,15 @@ package net.reciperemover.compat;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.stack.EmiStack;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.reciperemover.RecipeRemover;
 
+@Environment(EnvType.CLIENT)
 public class RecipeRemoverEmiPlugin implements EmiPlugin {
 
     @Override
