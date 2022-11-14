@@ -16,5 +16,7 @@ public class RecipeRemoverConfig implements ConfigData {
     @Comment("Recipe identifier list")
     @ConfigEntry.Gui.RequiresRestart
     public ArrayList<String> recipeList = new ArrayList<String>();
-
+    @Comment("Advancement identifier list")
+    @ConfigEntry.Gui.RequiresRestart
+    public ArrayList<String> advancementList = new ArrayList<String>();
 }
