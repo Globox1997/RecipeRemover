@@ -20,6 +20,8 @@ public class RecipeManagerMixin {
 
     @Inject(method = "apply", at = @At(value = "INVOKE_ASSIGN", target = "Lcom/google/common/collect/ImmutableMap;builder()Lcom/google/common/collect/ImmutableMap$Builder;"))
     private void applyMixin(Map<Identifier, JsonElement> map, ResourceManager resourceManager, Profiler profiler, CallbackInfo info) {
+        if (RecipeRemover.CONFIG.printRecipesAndAdvancements)
+            RecipeRemover.LOGGER.info(map.keySet());
         for (int i = 0; i < RecipeRemover.CONFIG.recipeList.size(); i++) {
             if (map.remove(new Identifier(RecipeRemover.CONFIG.recipeList.get(i))) == null && RecipeRemover.CONFIG.printErrorMessage)
                 RecipeRemover.LOGGER.error("Failed to remove item with identifier \"{}\"", RecipeRemover.CONFIG.recipeList.get(i));

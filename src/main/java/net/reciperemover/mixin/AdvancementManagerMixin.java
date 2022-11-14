@@ -18,6 +18,8 @@ public class AdvancementManagerMixin {
 
     @Inject(method = "load", at = @At(value = "INVOKE_ASSIGN", target = "Lcom/google/common/collect/Maps;newHashMap(Ljava/util/Map;)Ljava/util/HashMap;"), locals = LocalCapture.CAPTURE_FAILSOFT)
     private void loadMixin(Map<Identifier, Advancement.Builder> advancements, CallbackInfo info, Map<Identifier, Advancement.Builder> map) {
+        if (RecipeRemover.CONFIG.printRecipesAndAdvancements)
+            RecipeRemover.LOGGER.info(map.keySet());
         for (int i = 0; i < RecipeRemover.CONFIG.advancementList.size(); i++) {
             if (map.remove(new Identifier(RecipeRemover.CONFIG.advancementList.get(i))) == null && RecipeRemover.CONFIG.printErrorMessage)
                 RecipeRemover.LOGGER.error("Failed to remove advancement with identifier \"{}\"", RecipeRemover.CONFIG.advancementList.get(i));

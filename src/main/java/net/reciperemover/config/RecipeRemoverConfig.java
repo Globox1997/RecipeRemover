@@ -13,6 +13,8 @@ public class RecipeRemoverConfig implements ConfigData {
 
     @Comment("If identifier could not be found")
     public boolean printErrorMessage = false;
+    @Comment("Print when joining world")
+    public boolean printRecipesAndAdvancements = false;
     @Comment("Recipe identifier list")
     @ConfigEntry.Gui.RequiresRestart
     public ArrayList<String> recipeList = new ArrayList<String>();
