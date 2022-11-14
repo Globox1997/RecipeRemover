@@ -22,7 +22,7 @@ public class ServerRecipeBookMixin {
 
     @Redirect(method = "handleList", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;)V", ordinal = 0))
     private void errorMixin(Logger logger, String string, Object object) {
-        if (!RecipeRemover.CONFIG.recipe_list.contains(((Identifier) object).toString()))
+        if (!RecipeRemover.CONFIG.recipeList.contains(((Identifier) object).toString()))
             logger.error("Tried to load unrecognized recipe: {} removed now.", (Identifier) object);
     }
 }

@@ -19,8 +19,8 @@ public class RecipeRemoverClient implements ClientModInitializer {
             while (buf.isReadable())
                 list.add(buf.readString());
             client.execute(() -> {
-                RecipeRemover.CONFIG.recipe_list.clear();
-                RecipeRemover.CONFIG.recipe_list.addAll(list);
+                RecipeRemover.CONFIG.recipeList.clear();
+                RecipeRemover.CONFIG.recipeList.addAll(list);
             });
 
         });

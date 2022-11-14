@@ -26,8 +26,8 @@ public class RecipeRemover implements ModInitializer {
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
-            for (int i = 0; i < CONFIG.recipe_list.size(); i++)
-                buf.writeString(CONFIG.recipe_list.get(i));
+            for (int i = 0; i < CONFIG.recipeList.size(); i++)
+                buf.writeString(CONFIG.recipeList.get(i));
             CustomPayloadS2CPacket packet = new CustomPayloadS2CPacket(RECIPE_PACKET, buf);
             handler.sendPacket(packet);
         });

@@ -15,6 +15,6 @@ public class RecipeRemoverConfig implements ConfigData {
     public boolean printErrorMessage = false;
     @Comment("Recipe identifier list")
     @ConfigEntry.Gui.RequiresRestart
-    public ArrayList<String> recipe_list = new ArrayList<String>();
+    public ArrayList<String> recipeList = new ArrayList<String>();
 
 }
