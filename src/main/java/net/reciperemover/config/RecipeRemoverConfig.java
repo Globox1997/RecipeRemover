@@ -15,6 +15,12 @@ public class RecipeRemoverConfig implements ConfigData {
     public boolean printErrorMessage = false;
     @Comment("Print when joining world")
     public boolean printRecipesAndAdvancements = false;
+
+    @ConfigEntry.Gui.RequiresRestart
+    public boolean removeAllVanillaAdvancements = false;
+    @ConfigEntry.Gui.RequiresRestart
+    public boolean removeAllAdvancements = false;
+
     @Comment("Recipe identifier list")
     @ConfigEntry.Gui.RequiresRestart
     public ArrayList<String> recipeList = new ArrayList<String>();

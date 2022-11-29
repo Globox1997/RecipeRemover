@@ -1,5 +1,6 @@
 package net.reciperemover.mixin;
 
+import java.util.List;
 import java.util.Map;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,6 +21,17 @@ public class AdvancementManagerMixin {
     private void loadMixin(Map<Identifier, Advancement.Builder> advancements, CallbackInfo info, Map<Identifier, Advancement.Builder> map) {
         if (RecipeRemover.CONFIG.printRecipesAndAdvancements)
             RecipeRemover.LOGGER.info(map.keySet());
+
+        if (RecipeRemover.CONFIG.removeAllAdvancements)
+            map.clear();
+
+        if (RecipeRemover.CONFIG.removeAllVanillaAdvancements) {
+            List<Identifier> identifiers = map.keySet().stream().toList();
+            for (int i = 0; i < identifiers.size(); i++)
+                if (identifiers.get(i).getNamespace().equals("minecraft"))
+                    map.remove(identifiers.get(i));
+        }
+
         for (int i = 0; i < RecipeRemover.CONFIG.advancementList.size(); i++) {
             if (map.remove(new Identifier(RecipeRemover.CONFIG.advancementList.get(i))) == null && RecipeRemover.CONFIG.printErrorMessage)
                 RecipeRemover.LOGGER.error("Failed to remove advancement with identifier \"{}\"", RecipeRemover.CONFIG.advancementList.get(i));

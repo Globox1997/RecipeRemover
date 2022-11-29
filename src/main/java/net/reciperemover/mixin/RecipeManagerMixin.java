@@ -22,6 +22,7 @@ public class RecipeManagerMixin {
     private void applyMixin(Map<Identifier, JsonElement> map, ResourceManager resourceManager, Profiler profiler, CallbackInfo info) {
         if (RecipeRemover.CONFIG.printRecipesAndAdvancements)
             RecipeRemover.LOGGER.info(map.keySet());
+
         for (int i = 0; i < RecipeRemover.CONFIG.recipeList.size(); i++) {
             if (map.remove(new Identifier(RecipeRemover.CONFIG.recipeList.get(i))) == null && RecipeRemover.CONFIG.printErrorMessage)
                 RecipeRemover.LOGGER.error("Failed to remove item with identifier \"{}\"", RecipeRemover.CONFIG.recipeList.get(i));

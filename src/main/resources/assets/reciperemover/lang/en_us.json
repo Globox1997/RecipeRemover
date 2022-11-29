@@ -3,5 +3,7 @@
     "text.autoconfig.reciperemover.option.recipeList": "Recipe Identifier List",
     "text.autoconfig.reciperemover.option.advancementList": "Advancement Identifier List",
     "text.autoconfig.reciperemover.option.printErrorMessage": "Print Error Message",
-    "text.autoconfig.reciperemover.option.printRecipesAndAdvancements": "Print Recipes and Advancements"
+    "text.autoconfig.reciperemover.option.printRecipesAndAdvancements": "Print Recipes and Advancements",
+    "text.autoconfig.reciperemover.option.removeAllVanillaAdvancements": "Remove All Vanilla Advancements",
+    "text.autoconfig.reciperemover.option.removeAllAdvancements": "Remove All Advancements"
 }
