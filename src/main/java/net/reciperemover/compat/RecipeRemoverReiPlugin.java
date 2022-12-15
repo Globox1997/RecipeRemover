@@ -8,8 +8,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.reciperemover.RecipeRemover;
 
 @Environment(EnvType.CLIENT)
@@ -20,7 +20,7 @@ public class RecipeRemoverReiPlugin implements REIClientPlugin {
         REIClientPlugin.super.registerEntries(registry);
 
         for (int i = 0; i < RecipeRemover.CONFIG.recipeList.size(); i++) {
-            Item item = Registry.ITEM.get(new Identifier(RecipeRemover.CONFIG.recipeList.get(i)));
+            Item item = Registries.ITEM.get(new Identifier(RecipeRemover.CONFIG.recipeList.get(i)));
 
             if (!item.equals(Items.AIR))
                 registry.removeEntry(EntryStack.of(VanillaEntryTypes.ITEM, item.getDefaultStack()));

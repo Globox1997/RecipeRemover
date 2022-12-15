@@ -33,11 +33,11 @@ dependencies {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 	// Emi
-	modImplementation ("dev.emi:emi:0.3.4+1.19"), {
+	modImplementation ("dev.emi:emi:0.5.0+1.19.3"), {
     	exclude(group: "net.fabricmc.fabric-api")
   	}
 	// Rei
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:9.1.530"
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:10.0.581"
 	//modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:9.1.530"
 }
 
