@@ -21,7 +21,7 @@ public class RecipeRemoverConfig implements ConfigData {
     @ConfigEntry.Gui.RequiresRestart
     public boolean removeAllAdvancements = false;
 
-    @Comment("Recipe identifier list")
+    @Comment("Recipe identifier list (modid only for all mod recipes)")
     @ConfigEntry.Gui.RequiresRestart
     public ArrayList<String> recipeList = new ArrayList<String>();
     @Comment("Advancement identifier list")
