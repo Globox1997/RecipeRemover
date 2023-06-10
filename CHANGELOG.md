@@ -1,6 +1,6 @@
 ### Added:
-- Added modid restriction
+- 
 ### Fixed:
 - 
 ### Changed:
-- 
+- Updated to mc 1.20

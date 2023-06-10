@@ -1,10 +1,7 @@
 plugins {
-	id 'fabric-loom' version '1.0-SNAPSHOT'
+	id 'fabric-loom' version '1.2-SNAPSHOT'
 	id 'maven-publish'
 }
-
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -33,9 +30,7 @@ dependencies {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 	// Emi
-	modImplementation ("dev.emi:emi:0.5.0+1.19.3"), {
-    	exclude(group: "net.fabricmc.fabric-api")
-  	}
+	modCompileOnly "dev.emi:emi-fabric:1.0.2+1.19.4"
 	// Rei
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:10.0.581"
 	//modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:9.1.530"
@@ -59,6 +54,9 @@ java {
 	// if it is present.
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {
