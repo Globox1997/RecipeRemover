@@ -1,5 +1,7 @@
 {
     "text.autoconfig.reciperemover.title": "Recipe Remover Config",
+    "text.autoconfig.reciperemover.option.inventoryRecipeBookX": "Inventory Recipe Book X",
+    "text.autoconfig.reciperemover.option.inventoryRecipeBookY": "Inventory Recipe Book X",
     "text.autoconfig.reciperemover.option.recipeList": "Recipe Identifier List",
     "text.autoconfig.reciperemover.option.advancementList": "Advancement Identifier List",
     "text.autoconfig.reciperemover.option.printErrorMessage": "Print Error Message",

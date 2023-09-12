@@ -1,6 +1,6 @@
 ### Added:
-- 
+- Added inventory recipe book config
 ### Fixed:
 - 
 ### Changed:
-- Updated to mc 1.20.1
+- 

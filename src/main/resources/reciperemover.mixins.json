@@ -8,7 +8,9 @@
     "ServerRecipeBookMixin",
     "AdvancementManagerMixin"
   ],
-  "client": [],
+  "client": [
+    "client.InventoryScreenMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

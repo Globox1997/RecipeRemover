@@ -11,6 +11,9 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 @Config.Gui.Background("minecraft:textures/block/stone.png")
 public class RecipeRemoverConfig implements ConfigData {
 
+    public int inventoryRecipeBookX = 0;
+    public int inventoryRecipeBookY = 0;
+
     @Comment("If identifier could not be found")
     public boolean printErrorMessage = false;
     @Comment("Print when joining world")
