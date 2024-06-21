@@ -1,35 +1,37 @@
 package net.reciperemover;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import io.netty.buffer.Unpooled;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
-import net.minecraft.util.Identifier;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.reciperemover.config.RecipeRemoverConfig;
+import net.reciperemover.network.RecipeRemoverPacket;
 
 public class RecipeRemover implements ModInitializer {
 
     public static RecipeRemoverConfig CONFIG = new RecipeRemoverConfig();
     public static final Logger LOGGER = LogManager.getLogger("RecipeRemover");
-    public static final Identifier RECIPE_PACKET = new Identifier("reciperemover", "recipes");
 
     @Override
     public void onInitialize() {
         AutoConfig.register(RecipeRemoverConfig.class, GsonConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(RecipeRemoverConfig.class).getConfig();
 
+        PayloadTypeRegistry.playS2C().register(RecipeRemoverPacket.PACKET_ID, RecipeRemoverPacket.PACKET_CODEC);
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
-            PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
-            for (int i = 0; i < CONFIG.recipeList.size(); i++)
-                buf.writeString(CONFIG.recipeList.get(i));
-            CustomPayloadS2CPacket packet = new CustomPayloadS2CPacket(RECIPE_PACKET, buf);
-            handler.sendPacket(packet);
+            List<String> recipeStrings = new ArrayList<String>();
+            for (int i = 0; i < CONFIG.recipeList.size(); i++) {
+                recipeStrings.add(CONFIG.recipeList.get(i));
+            }
+            ServerPlayNetworking.send(handler.player, new RecipeRemoverPacket(recipeStrings));
         });
     }
 

@@ -19,8 +19,7 @@ public class ServerRecipeBookMixin {
     // if (RecipeRemover.CONFIG.recipe_list.contains(string))
     // info.cancel();
     // }
-
-    @Redirect(method = "handleList", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;)V", ordinal = 0))
+    @Redirect(method = "handleList", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;)V", ordinal = 0), remap = false)
     private void errorMixin(Logger logger, String string, Object object) {
         if (!RecipeRemover.CONFIG.recipeList.contains(((Identifier) object).toString())) {
             logger.error("Tried to load unrecognized recipe: {} removed now.", (Identifier) object);

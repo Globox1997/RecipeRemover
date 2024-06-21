@@ -23,12 +23,12 @@ public class InventoryScreenMixin {
         return original + RecipeRemover.CONFIG.inventoryRecipeBookY;
     }
 
-    @ModifyConstant(method = "method_19891", constant = @Constant(intValue = 104), require = 0)
+    @ModifyConstant(method = "method_19891", constant = @Constant(intValue = 104), require = 0, remap = false)
     private int initModifyLambdaXMixin(int original) {
         return original + RecipeRemover.CONFIG.inventoryRecipeBookX;
     }
 
-    @ModifyConstant(method = "method_19891", constant = @Constant(intValue = 22), require = 0)
+    @ModifyConstant(method = "method_19891", constant = @Constant(intValue = 22), require = 0, remap = false)
     private int initModifyLambdaYMixin(int original) {
         return original + RecipeRemover.CONFIG.inventoryRecipeBookY;
     }

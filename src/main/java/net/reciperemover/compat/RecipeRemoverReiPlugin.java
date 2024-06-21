@@ -20,7 +20,7 @@ public class RecipeRemoverReiPlugin implements REIClientPlugin {
         REIClientPlugin.super.registerEntries(registry);
 
         for (int i = 0; i < RecipeRemover.CONFIG.recipeList.size(); i++) {
-            Item item = Registries.ITEM.get(new Identifier(RecipeRemover.CONFIG.recipeList.get(i)));
+            Item item = Registries.ITEM.get(Identifier.of(RecipeRemover.CONFIG.recipeList.get(i)));
 
             if (!item.equals(Items.AIR))
                 registry.removeEntry(EntryStack.of(VanillaEntryTypes.ITEM, item.getDefaultStack()));

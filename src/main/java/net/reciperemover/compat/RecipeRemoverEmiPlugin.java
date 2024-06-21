@@ -18,7 +18,7 @@ public class RecipeRemoverEmiPlugin implements EmiPlugin {
     public void register(EmiRegistry registry) {
         for (int i = 0; i < RecipeRemover.CONFIG.recipeList.size(); i++) {
 
-            Item item = Registries.ITEM.get(new Identifier(RecipeRemover.CONFIG.recipeList.get(i)));
+            Item item = Registries.ITEM.get(Identifier.of(RecipeRemover.CONFIG.recipeList.get(i)));
 
             if (!item.equals(Items.AIR))
                 registry.removeEmiStacks(EmiStack.of(item));
