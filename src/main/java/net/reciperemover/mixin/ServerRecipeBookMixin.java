@@ -1,9 +1,10 @@
 package net.reciperemover.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 import net.minecraft.server.network.ServerRecipeBook;
 import net.minecraft.util.Identifier;
@@ -19,10 +20,11 @@ public class ServerRecipeBookMixin {
     // if (RecipeRemover.CONFIG.recipe_list.contains(string))
     // info.cancel();
     // }
-    @Redirect(method = "handleList", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;)V", ordinal = 0), remap = false)
-    private void errorMixin(Logger logger, String string, Object object) {
-        if (!RecipeRemover.CONFIG.recipeList.contains(((Identifier) object).toString())) {
-            logger.error("Tried to load unrecognized recipe: {} removed now.", (Identifier) object);
+    @WrapOperation(method = "handleList",at = @At(value = "INVOKE",target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;)V",ordinal = 1),remap = false)
+    private void errorMixin(Logger instance, String s, Object o, Operation<Void> original){
+        if (!RecipeRemover.CONFIG.recipeList.contains(((Identifier) o).toString())) {
+            original.call(instance,s,o);
         }
     }
+
 }
