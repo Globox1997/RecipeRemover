@@ -20,10 +20,10 @@ public class ServerRecipeBookMixin {
     // if (RecipeRemover.CONFIG.recipe_list.contains(string))
     // info.cancel();
     // }
-    @WrapOperation(method = "handleList",at = @At(value = "INVOKE",target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;)V",ordinal = 1),remap = false)
-    private void errorMixin(Logger instance, String s, Object o, Operation<Void> original){
+    @WrapOperation(method = "handleList", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;)V", ordinal = 0))
+    private void errorMixin(Logger instance, String s, Object o, Operation<Void> original) {
         if (!RecipeRemover.CONFIG.recipeList.contains(((Identifier) o).toString())) {
-            original.call(instance,s,o);
+            original.call(instance, s, o);
         }
     }
 

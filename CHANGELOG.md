@@ -1,6 +1,6 @@
 ### Added:
 - 
 ### Fixed:
-- Fixed start up crash
+- Fixed start up crash again
 ### Changed:
 - 
