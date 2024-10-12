@@ -21,11 +21,19 @@ public class RecipeRemoverReiPlugin implements REIClientPlugin {
 
         for (int i = 0; i < RecipeRemover.CONFIG.recipeList.size(); i++) {
             Item item = Registries.ITEM.get(Identifier.of(RecipeRemover.CONFIG.recipeList.get(i)));
-
-            if (!item.equals(Items.AIR))
+            if (!item.equals(Items.AIR)) {
                 registry.removeEntry(EntryStack.of(VanillaEntryTypes.ITEM, item.getDefaultStack()));
-            else if (RecipeRemover.CONFIG.printErrorMessage)
+            } else if (RecipeRemover.CONFIG.printErrorMessage) {
                 RecipeRemover.LOGGER.error("Failed to remove item with identifier \"{}\"", RecipeRemover.CONFIG.recipeList.get(i));
+            }
+        }
+        for (int i = 0; i < RecipeRemover.CONFIG.itemList.size(); i++) {
+            Item item = Registries.ITEM.get(Identifier.of(RecipeRemover.CONFIG.itemList.get(i)));
+            if (!item.equals(Items.AIR)) {
+                registry.removeEntry(EntryStack.of(VanillaEntryTypes.ITEM, item.getDefaultStack()));
+            } else if (RecipeRemover.CONFIG.printErrorMessage) {
+                RecipeRemover.LOGGER.error("Failed to remove item with identifier \"{}\"", RecipeRemover.CONFIG.itemList.get(i));
+            }
         }
     }
 

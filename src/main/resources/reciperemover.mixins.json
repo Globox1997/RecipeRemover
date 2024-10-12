@@ -6,7 +6,10 @@
   "mixins": [
     "RecipeManagerMixin",
     "ServerRecipeBookMixin",
-    "AdvancementManagerMixin"
+    "AdvancementManagerMixin",
+    "ItemStackMixin",
+    "ItemGroupMixin",
+    "GiveCommandMixin"
   ],
   "client": [
     "client.InventoryScreenMixin"

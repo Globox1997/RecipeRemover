@@ -1,19 +1,19 @@
 package net.reciperemover;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.registry.Registries;
 import net.reciperemover.config.RecipeRemoverConfig;
 import net.reciperemover.network.RecipeRemoverPacket;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RecipeRemover implements ModInitializer {
 
@@ -32,6 +32,14 @@ public class RecipeRemover implements ModInitializer {
                 recipeStrings.add(CONFIG.recipeList.get(i));
             }
             ServerPlayNetworking.send(handler.player, new RecipeRemoverPacket(recipeStrings));
+
+            if (!CONFIG.itemList.isEmpty()) {
+                for (int i = 0; i < handler.getPlayer().getInventory().size(); i++) {
+                    if (RecipeRemover.CONFIG.itemList.contains(Registries.ITEM.getId(handler.getPlayer().getInventory().getStack(i).getItem()).toString())) {
+                        handler.getPlayer().getInventory().removeStack(i);
+                    }
+                }
+            }
         });
     }
 
