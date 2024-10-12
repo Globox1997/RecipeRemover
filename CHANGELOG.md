@@ -1,6 +1,6 @@
 ### Added:
-- 
+- Added item disable feature
 ### Fixed:
-- Fixed start up crash again
+- 
 ### Changed:
 - 
