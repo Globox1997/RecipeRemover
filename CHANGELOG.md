@@ -1,5 +1,5 @@
 ### Added:
-- Added inventory recipe book config
+- Added item disabling feature
 ### Fixed:
 - 
 ### Changed:

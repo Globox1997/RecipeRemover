@@ -30,7 +30,7 @@ public class RecipeManagerMixin {
                         map.remove(identifier);
                     }
                 }
-            } else if (map.remove(Identifier.of(RecipeRemover.CONFIG.recipeList.get(i))) == null && RecipeRemover.CONFIG.printErrorMessage) {
+            } else if (map.remove(new Identifier(RecipeRemover.CONFIG.recipeList.get(i))) == null && RecipeRemover.CONFIG.printErrorMessage) {
                 RecipeRemover.LOGGER.error("Failed to remove item with identifier \"{}\"", RecipeRemover.CONFIG.recipeList.get(i));
             }
         }
