@@ -1,20 +1,18 @@
 package net.reciperemover.mixin;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-
+import net.minecraft.advancement.AdvancementEntry;
+import net.minecraft.advancement.AdvancementManager;
+import net.minecraft.util.Identifier;
+import net.reciperemover.RecipeRemover;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import net.minecraft.advancement.AdvancementEntry;
-import net.minecraft.advancement.AdvancementManager;
-import net.minecraft.util.Identifier;
-import net.reciperemover.RecipeRemover;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Mixin(AdvancementManager.class)
 public class AdvancementManagerMixin {
@@ -31,18 +29,16 @@ public class AdvancementManagerMixin {
 
         if (RecipeRemover.CONFIG.removeAllVanillaAdvancements) {
             List<AdvancementEntry> advancementEntries = list.stream().toList();
-            for (int i = 0; i < advancementEntries.size(); i++) {
-                if (advancementEntries.get(i).id().getNamespace().equals("minecraft")) {
-                    list.remove(advancementEntries.get(i));
+            for (AdvancementEntry advancementEntry : advancementEntries) {
+                if (advancementEntry.id().getNamespace().equals("minecraft")) {
+                    list.remove(advancementEntry);
                 }
             }
         }
 
         List<AdvancementEntry> removingAdvancementEntries = new ArrayList<AdvancementEntry>();
         for (int i = 0; i < RecipeRemover.CONFIG.advancementList.size(); i++) {
-            Iterator<AdvancementEntry> iterator = list.iterator();
-            while (iterator.hasNext()) {
-                AdvancementEntry entry = iterator.next();
+            for (AdvancementEntry entry : list) {
                 if (Identifier.of(RecipeRemover.CONFIG.advancementList.get(i)).equals(entry.id())) {
                     removingAdvancementEntries.add(entry);
                 }

@@ -1,16 +1,17 @@
 package net.reciperemover.network;
 
-import java.util.List;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;
-import net.minecraft.util.Identifier;
+import net.reciperemover.RecipeRemover;
+
+import java.util.List;
 
 public record RecipeRemoverPacket(List<String> recipeStrings) implements CustomPayload {
 
     public static final PacketCodec<PacketByteBuf, RecipeRemoverPacket> PACKET_CODEC = CustomPayload.codecOf(RecipeRemoverPacket::write, RecipeRemoverPacket::new);
 
-    public static final CustomPayload.Id<RecipeRemoverPacket> PACKET_ID = new CustomPayload.Id<>(Identifier.of("reciperemover", "reciperemover_packet"));
+    public static final CustomPayload.Id<RecipeRemoverPacket> PACKET_ID = new CustomPayload.Id<>(RecipeRemover.identifierOf("reciperemover_packet"));
 
     private RecipeRemoverPacket(PacketByteBuf buf) {
         this(buf.readList(PacketByteBuf::readString));

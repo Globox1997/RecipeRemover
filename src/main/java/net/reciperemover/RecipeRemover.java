@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
 import net.reciperemover.config.RecipeRemoverConfig;
 import net.reciperemover.network.RecipeRemoverPacket;
 import org.apache.logging.log4j.LogManager;
@@ -41,6 +42,10 @@ public class RecipeRemover implements ModInitializer {
                 }
             }
         });
+    }
+
+    public static Identifier identifierOf(String name) {
+        return Identifier.of("reciperemover", name);
     }
 
 }
