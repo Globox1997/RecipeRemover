@@ -24,14 +24,18 @@ public class RecipeRemoverConfig implements ConfigData {
     @ConfigEntry.Gui.RequiresRestart
     public boolean removeAllAdvancements = false;
 
+    @Comment("Remove all except advancement identifier list")
+    @ConfigEntry.Gui.RequiresRestart
+    public ArrayList<String> removeAllAdvancementsExcept = new ArrayList<>();
+
     @Comment("Recipe identifier list (modid only for all mod recipes)")
     @ConfigEntry.Gui.RequiresRestart
-    public ArrayList<String> recipeList = new ArrayList<String>();
+    public ArrayList<String> recipeList = new ArrayList<>();
     @Comment("Advancement identifier list")
     @ConfigEntry.Gui.RequiresRestart
-    public ArrayList<String> advancementList = new ArrayList<String>();
+    public ArrayList<String> advancementList = new ArrayList<>();
 
     @Comment("Item removal identifier list ")
     @ConfigEntry.Gui.RequiresRestart
-    public ArrayList<String> itemList = new ArrayList<String>();
+    public ArrayList<String> itemList = new ArrayList<>();
 }

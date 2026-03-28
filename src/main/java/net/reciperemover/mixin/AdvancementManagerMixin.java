@@ -36,20 +36,36 @@ public class AdvancementManagerMixin {
             }
         }
 
-        List<AdvancementEntry> removingAdvancementEntries = new ArrayList<AdvancementEntry>();
-        for (int i = 0; i < RecipeRemover.CONFIG.advancementList.size(); i++) {
-            for (AdvancementEntry entry : list) {
-                if (Identifier.of(RecipeRemover.CONFIG.advancementList.get(i)).equals(entry.id())) {
-                    removingAdvancementEntries.add(entry);
+        if (!RecipeRemover.CONFIG.removeAllAdvancementsExcept.isEmpty()) {
+            List<AdvancementEntry> advancementEntries = list.stream().toList();
+            for (int i = 0; i < RecipeRemover.CONFIG.removeAllAdvancementsExcept.size(); i++) {
+                for (AdvancementEntry entry : advancementEntries) {
+                    if (RecipeRemover.CONFIG.removeAllAdvancementsExcept.get(i).endsWith(":")) {
+                        if (!entry.id().getNamespace().equals(RecipeRemover.CONFIG.removeAllAdvancementsExcept.get(i).replace(":", ""))) {
+                            list.remove(entry);
+                        }
+                    } else if (!Identifier.of(RecipeRemover.CONFIG.removeAllAdvancementsExcept.get(i)).equals(entry.id())) {
+                        list.remove(entry);
+                    }
                 }
-                // list.stream().toList().
-                // if (map.remove(new Identifier(RecipeRemover.CONFIG.advancementList.get(i))) == null && RecipeRemover.CONFIG.printErrorMessage) {
-                // RecipeRemover.LOGGER.error("Failed to remove advancement with identifier \"{}\"", RecipeRemover.CONFIG.advancementList.get(i));
             }
         }
-        list.removeAll(removingAdvancementEntries);
 
-        // example: minecraft:recipes/building_blocks/waxed_cut_copper_stairs_from_honeycomb
+        if (!RecipeRemover.CONFIG.advancementList.isEmpty()) {
+            List<AdvancementEntry> removingAdvancementEntries = new ArrayList<>();
+            for (int i = 0; i < RecipeRemover.CONFIG.advancementList.size(); i++) {
+                for (AdvancementEntry entry : list) {
+                    if (Identifier.of(RecipeRemover.CONFIG.advancementList.get(i)).equals(entry.id())) {
+                        removingAdvancementEntries.add(entry);
+                    }
+                    // if (map.remove(new Identifier(RecipeRemover.CONFIG.advancementList.get(i))) == null && RecipeRemover.CONFIG.printErrorMessage) {
+                    // RecipeRemover.LOGGER.error("Failed to remove advancement with identifier \"{}\"", RecipeRemover.CONFIG.advancementList.get(i));
+                }
+            }
+            list.removeAll(removingAdvancementEntries);
+        }
+
+        // example: minecraft:building_blocks/waxed_cut_copper_stairs_from_honeycomb
     }
 
 }

@@ -8,6 +8,7 @@
     "text.autoconfig.reciperemover.option.printRecipesAndAdvancements": "Print Recipes and Advancements",
     "text.autoconfig.reciperemover.option.removeAllVanillaAdvancements": "Remove All Vanilla Advancements",
     "text.autoconfig.reciperemover.option.removeAllAdvancements": "Remove All Advancements",
+    "text.autoconfig.reciperemover.option.removeAllAdvancementsExcept": "Remove All Advancements Except",
     "text.autoconfig.reciperemover.option.itemList": "Item Identifier List",
 
     "commands.give.failed.removed": "Item %s is disabled!"
