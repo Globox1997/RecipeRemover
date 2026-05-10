@@ -1,6 +1,6 @@
 ### Added:
-- Added remove all advancements except list
-### Fixed:
 - 
+### Fixed:
+- Fixed emi recipe compat
 ### Changed:
 - 

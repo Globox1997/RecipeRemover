@@ -17,12 +17,13 @@ public class RecipeRemoverEmiPlugin implements EmiPlugin {
     @Override
     public void register(EmiRegistry registry) {
         for (int i = 0; i < RecipeRemover.CONFIG.recipeList.size(); i++) {
-            Item item = Registries.ITEM.get(Identifier.of(RecipeRemover.CONFIG.recipeList.get(i)));
-            if (!item.equals(Items.AIR)) {
-                registry.removeEmiStacks(EmiStack.of(item));
-            } else if (RecipeRemover.CONFIG.printErrorMessage) {
-                RecipeRemover.LOGGER.error("Failed to remove item with identifier \"{}\"", RecipeRemover.CONFIG.recipeList.get(i));
-            }
+            registry.removeRecipes(Identifier.of(RecipeRemover.CONFIG.recipeList.get(i)));
+//            Item item = Registries.ITEM.get(Identifier.of(RecipeRemover.CONFIG.recipeList.get(i)));
+//            if (!item.equals(Items.AIR)) {
+//                registry.removeEmiStacks(EmiStack.of(item));
+//            } else if (RecipeRemover.CONFIG.printErrorMessage) {
+//                RecipeRemover.LOGGER.error("Failed to remove item with identifier \"{}\"", RecipeRemover.CONFIG.recipeList.get(i));
+//            }
         }
         for (int i = 0; i < RecipeRemover.CONFIG.itemList.size(); i++) {
             Item item = Registries.ITEM.get(Identifier.of(RecipeRemover.CONFIG.itemList.get(i)));
