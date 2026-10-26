@@ -1,6 +1,6 @@
 ### Added:
 - 
 ### Fixed:
-- Fixed emi recipe compat
+- Recipe crash with only mod id
 ### Changed:
 - 
