@@ -23,15 +23,14 @@ public class RecipeManagerMixin {
             RecipeRemover.LOGGER.info(map.keySet());
         }
 
-        for (int i = 0; i < RecipeRemover.CONFIG.recipeList.size(); i++) {
-            if (!RecipeRemover.CONFIG.recipeList.get(i).contains(":")) {
-                for (Identifier identifier : map.keySet()) {
-                    if (identifier.getNamespace().equals(RecipeRemover.CONFIG.recipeList.get(i))) {
-                        map.remove(identifier);
-                    }
+        for (String entry : RecipeRemover.CONFIG.recipeList) {
+            if (!entry.contains(":")) {
+                map.keySet().removeIf(identifier -> identifier.getNamespace().equals(entry));
+            } else {
+                Identifier identifier = Identifier.tryParse(entry);
+                if ((identifier == null || map.remove(identifier) == null) && RecipeRemover.CONFIG.printErrorMessage) {
+                    RecipeRemover.LOGGER.error("Failed to remove recipe with identifier \"{}\"", entry);
                 }
-            } else if (map.remove(Identifier.of(RecipeRemover.CONFIG.recipeList.get(i))) == null && RecipeRemover.CONFIG.printErrorMessage) {
-                RecipeRemover.LOGGER.error("Failed to remove item with identifier \"{}\"", RecipeRemover.CONFIG.recipeList.get(i));
             }
         }
 

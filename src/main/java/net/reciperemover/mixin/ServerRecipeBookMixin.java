@@ -22,7 +22,7 @@ public class ServerRecipeBookMixin {
     // }
     @WrapOperation(method = "handleList", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;)V", ordinal = 0))
     private void errorMixin(Logger instance, String s, Object o, Operation<Void> original) {
-        if (!RecipeRemover.CONFIG.recipeList.contains(((Identifier) o).toString())) {
+        if (!(o instanceof Identifier identifier && RecipeRemover.isRecipeRemoved(identifier))) {
             original.call(instance, s, o);
         }
     }

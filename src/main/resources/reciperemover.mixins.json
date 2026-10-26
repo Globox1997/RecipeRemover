@@ -8,7 +8,6 @@
     "ServerRecipeBookMixin",
     "AdvancementManagerMixin",
     "ItemStackMixin",
-    "ItemGroupMixin",
     "GiveCommandMixin"
   ],
   "client": [

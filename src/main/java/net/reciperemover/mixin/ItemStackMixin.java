@@ -2,7 +2,6 @@ package net.reciperemover.mixin;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
 import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.reciperemover.RecipeRemover;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,7 +15,7 @@ public abstract class ItemStackMixin {
 
     @Inject(method = "isItemEnabled", at = @At("HEAD"), cancellable = true)
     private void isItemEnabledMixin(FeatureSet enabledFeatures, CallbackInfoReturnable<Boolean> info) {
-        if (getItem() != null && RecipeRemover.CONFIG.itemList.contains(Registries.ITEM.getId(getItem()).toString())) {
+        if (RecipeRemover.isItemRemoved(getItem())) {
             info.setReturnValue(false);
         }
     }
