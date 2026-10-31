@@ -4,11 +4,12 @@
   "package": "net.reciperemover.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "RecipeManagerMixin",
-    "ServerRecipeBookMixin",
     "AdvancementManagerMixin",
+    "GiveCommandMixin",
     "ItemStackMixin",
-    "GiveCommandMixin"
+    "RecipeManagerMixin",
+    "ServerAdvancementLoaderMixin",
+    "ServerRecipeBookMixin"
   ],
   "client": [
     "client.InventoryScreenMixin"

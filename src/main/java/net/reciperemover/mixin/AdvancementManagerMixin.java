@@ -5,15 +5,10 @@ import net.minecraft.advancement.AdvancementManager;
 import net.minecraft.util.Identifier;
 import net.reciperemover.RecipeRemover;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Mixin(AdvancementManager.class)
 public class AdvancementManagerMixin {
@@ -35,7 +30,7 @@ public class AdvancementManagerMixin {
         }
 
         if (!RecipeRemover.CONFIG.removeAllAdvancementsExcept.isEmpty()) {
-            list.removeIf(entry -> !isExcepted(entry.id()));
+            list.removeIf(entry -> !RecipeRemover.isExcepted(entry.id()));
         }
 
         if (!RecipeRemover.CONFIG.advancementList.isEmpty()) {
@@ -52,20 +47,6 @@ public class AdvancementManagerMixin {
         }
 
         return list;
-    }
-
-    @Unique
-    private static boolean isExcepted(Identifier identifier) {
-        for (String exception : RecipeRemover.CONFIG.removeAllAdvancementsExcept) {
-            if (exception.endsWith(":")) {
-                if (identifier.getNamespace().equals(exception.substring(0, exception.length() - 1))) {
-                    return true;
-                }
-            } else if (identifier.equals(Identifier.tryParse(exception))) {
-                return true;
-            }
-        }
-        return false;
     }
 
 }

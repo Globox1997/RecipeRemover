@@ -55,6 +55,10 @@ public class RecipeRemover implements ModInitializer {
         });
     }
 
+    public static Identifier identifierOf(String name) {
+        return Identifier.of("reciperemover", name);
+    }
+
     public static Set<Item> getRemovedItems() {
         if (removedItems == null) {
             Set<Item> items = new HashSet<>();
@@ -79,8 +83,17 @@ public class RecipeRemover implements ModInitializer {
         return CONFIG.recipeList.contains(identifier.toString()) || CONFIG.recipeList.contains(identifier.getNamespace());
     }
 
-    public static Identifier identifierOf(String name) {
-        return Identifier.of("reciperemover", name);
+    public static boolean isExcepted(Identifier identifier) {
+        for (String exception : RecipeRemover.CONFIG.removeAllAdvancementsExcept) {
+            if (exception.endsWith(":")) {
+                if (identifier.getNamespace().equals(exception.substring(0, exception.length() - 1))) {
+                    return true;
+                }
+            } else if (identifier.equals(Identifier.tryParse(exception))) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
